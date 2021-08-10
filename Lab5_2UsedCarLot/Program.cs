@@ -63,7 +63,23 @@ namespace Lab5_2UsedCarLot
             Console.Write("New or Used? ");
             string input = Console.ReadLine().ToUpper();
 
-            Console.WriteLine("\nPlease choose from the following Makes:\n1.  Ford\n2.  Chevrolet\n3.  Chrysler\n4.  Honda\n5.  Toyota\n6.  Nissan\n7.  Mazda\n8.  Mercedes\n9.  Hyundai\n10. Tesla\n11. Audi\n12. Rivian");
+            // Listing the different make options that are in the CarMake enum
+            bool validEnum = true;
+            int index = 0;
+            string carMakes = "\nPlease choose from the following Makes:\n";
+            while (validEnum)
+            {
+                if (Enum.IsDefined(typeof(CarMake), (CarMake)index))
+                {
+                    carMakes += $"{index + 1}.  {(CarMake)index}\n";
+                    index++;
+                }
+                else
+                {
+                    validEnum = false;
+                }
+            }    
+            Console.WriteLine(carMakes);
             int input2 = Int32.Parse(Console.ReadLine());
             input2 -= 1;
             make = (CarMake)input2;
